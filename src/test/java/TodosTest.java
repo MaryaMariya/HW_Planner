@@ -245,4 +245,99 @@ public class TodosTest {
         Task[] actual = todos.search(query);
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    public void test_1(){
+        Task task = new Task(1);
+        SimpleTask simpleTask = new SimpleTask(10, "Энциклопедия для чайников");
+
+        String[] subtasks = {"Энциклопедия для мальчиков", "Словарь", "Выучить язык"};
+        Epic epic = new Epic(60, subtasks);
+
+        Meeting meeting = new Meeting(
+                57,
+                "Энциклопедия спорта",
+                "Архаизм",
+                "08.09.2023"
+        );
+        Todos todos = new Todos();
+
+        todos.add(task);
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        boolean[] expected = {false, true, true, true};
+        boolean[] actual = new boolean[4];
+
+        Task[] arrayTask = todos.findAll();
+
+        for (int i = 0; i < arrayTask.length; i++) {
+            actual[i] = arrayTask[i].matches("Энциклопедия");
+        }
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void test_2(){
+        Task task = new Task(1);
+        SimpleTask simpleTask = new SimpleTask(10, "Энциклопедия для чайников");
+
+        String[] subtasks = {"Энциклопедия для мальчиков", "Словарь", "Выучить язык"};
+        Epic epic = new Epic(60, subtasks);
+
+        Meeting meeting = new Meeting(
+                57,
+                "Энциклопедия спорта",
+                "Архаизм",
+                "08.09.2023"
+        );
+        Todos todos = new Todos();
+
+        todos.add(task);
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        boolean[] expected = {false, true, true, true};
+        boolean[] actual = new boolean[4];
+
+        Task[] arrayTask = todos.findAll();
+
+        for (int i = 0; i < arrayTask.length; i++) {
+            actual[i] = arrayTask[i].matches("Энциклопедия");
+        }
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void test_3() {
+        SimpleTask simpleTask = new SimpleTask(10, "Пособие для чайников");
+
+        String[] subtasks = {"Бизнес с нуля", "Отправить письмо", "Позвонить коллеге"};
+        Epic epic = new Epic(55, subtasks);
+
+        Meeting meeting = new Meeting(
+                100,
+                "Английская схема",
+                "Обновление ПО",
+                "08.09.2023"
+        );
+        Todos todos = new Todos();
+
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        boolean[] expected = {false, false, false};
+        boolean[] actual = new boolean[3];
+
+        Task[] arrayTask = todos.findAll();
+
+        for (int i = 0; i < arrayTask.length; i++) {
+            actual[i] = arrayTask[i].matches("Верификация");
+        }
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }

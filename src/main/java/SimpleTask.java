@@ -7,11 +7,6 @@ public class SimpleTask extends Task {
         this.title = title;
     }
 
-    public String getTitle() {
-
-        return title;
-    }
-
     @Override
     public boolean matches(String query) {
         if (title.contains(query)) {
